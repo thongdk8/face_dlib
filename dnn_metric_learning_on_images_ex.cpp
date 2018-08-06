@@ -1,31 +1,3 @@
-// The contents of this file are in the public domain. See LICENSE_FOR_EXAMPLE_PROGRAMS.txt
-/*
-    This is an example illustrating the use of the deep learning tools from the
-    dlib C++ Library.  In it, we will show how to use the loss_metric layer to do
-    metric learning on images.  
-
-    The main reason you might want to use this kind of algorithm is because you
-    would like to use a k-nearest neighbor classifier or similar algorithm, but
-    you don't know a good way to calculate the distance between two things.  A
-    popular example would be face recognition.  There are a whole lot of papers
-    that train some kind of deep metric learning algorithm that embeds face
-    images in some vector space where images of the same person are close to each
-    other and images of different people are far apart.  Then in that vector
-    space it's very easy to do face recognition with some kind of k-nearest
-    neighbor classifier.  
-    
-    In this example we will use a version of the ResNet network from the
-    dnn_imagenet_ex.cpp example to learn to map images into some vector space where
-    pictures of the same person are close and pictures of different people are far
-    apart.  
-
-    You might want to read the simpler introduction to the deep metric learning
-    API, dnn_metric_learning_ex.cpp, before reading this example.  You should
-    also have read the examples that introduce the dlib DNN API before
-    continuing.  These are dnn_introduction_ex.cpp and dnn_introduction2_ex.cpp.
-
-*/
-
 #include <dlib/dnn.h>
 #include <dlib/image_io.h>
 #include <dlib/misc_api.h>
@@ -211,7 +183,7 @@ int main(int argc, char** argv)
     deserialize("/home/thongpb/works/face_recognition/dlib-models-master/dlib_face_recognition_resnet_model_v1.dat") >> testing_net;
 
 
-    anet_type net ;//= testing_net;
+    anet_type net = testing_net;
 
     dnn_trainer<anet_type> trainer(net, sgd(0.00005, 0.9));
     trainer.set_learning_rate(0.0005);
@@ -220,7 +192,7 @@ int main(int argc, char** argv)
     // I've set this to something really small to make the example terminate
     // sooner.  But when you really want to train a good model you should set
     // this to something like 10000 so training doesn't terminate too early.
-    trainer.set_iterations_without_progress_threshold(300);
+    trainer.set_iterations_without_progress_threshold(10000);
 
     // If you have a lot of data then it might not be reasonable to load it all
     // into RAM.  So you will need to be sure you are decompressing your images
@@ -270,7 +242,7 @@ int main(int argc, char** argv)
     // Wait for training threads to stop
     trainer.get_net();
     cout << "done training" << endl;
-
+    cout << "Optimal threshold value :" << net.loss_details().get_distance_threshold() << endl;
     // Save the network to disk
     net.clean();
     serialize("metric_network_renset.dat") << net;
@@ -285,7 +257,7 @@ int main(int argc, char** argv)
     data_loader5.join();
 
 
-
+/*
     testing_net = net;
 
     // Now, just to show an example of how you would use the network, let's check how well
@@ -328,7 +300,7 @@ int main(int argc, char** argv)
 
     cout << "num_right: "<< num_right << endl;
     cout << "num_wrong: "<< num_wrong << endl;
-
+*/
 }
 
 
