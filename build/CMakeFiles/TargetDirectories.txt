@@ -1,0 +1,6 @@
+/home/thongpb/works/face_recognition/dlib_implementation/build/CMakeFiles/edit_cache.dir
+/home/thongpb/works/face_recognition/dlib_implementation/build/CMakeFiles/rebuild_cache.dir
+/home/thongpb/works/face_recognition/dlib_implementation/build/CMakeFiles/face_detection_ex.dir
+/home/thongpb/works/face_recognition/dlib_implementation/build/CMakeFiles/dnn_export_face_chip.dir
+/home/thongpb/works/face_recognition/dlib_implementation/build/CMakeFiles/dnn_mmod_face_detection_ex.dir
+/home/thongpb/works/face_recognition/dlib_implementation/build/CMakeFiles/dnn_metric_learning_on_images_ex.dir
